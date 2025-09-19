@@ -3,8 +3,25 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 def count_parameters(model):
-    """Count total trainable parameters"""
-    return sum(p.numel() for p in model.parameters() if p.requires_grad)
+    """Count total parameters in the model"""
+    return sum(p.numel() for p in model.parameters())
+
+def print_model_summary(model):
+    """Print a simple model summary without torchsummary"""
+    print("Model Architecture:")
+    print("=" * 50)
+    total_params = 0
+    
+    for name, module in model.named_modules():
+        if len(list(module.children())) == 0:  # Only leaf modules
+            params = sum(p.numel() for p in module.parameters())
+            if params > 0:
+                print(f"{name}: {params:,} parameters")
+                total_params += params
+    
+    print("=" * 50)
+    print(f"Total parameters: {total_params:,}")
+    return total_params
 
 class EnhancedMNISTCNN(nn.Module):
     def __init__(self, dropout_rate=0.1):
@@ -72,28 +89,14 @@ class EnhancedMNISTCNN(nn.Module):
         x = x.view(-1, 10)
         return F.log_softmax(x, dim=-1)
 
-def print_model_summary(model):
-    """Print a simple model summary"""
-    print("Model Architecture:")
-    print("=" * 50)
-    total_params = 0
-    
-    for name, module in model.named_modules():
-        if len(list(module.children())) == 0 and hasattr(module, 'weight'):
-            params = sum(p.numel() for p in module.parameters())
-            if params > 0:
-                print(f"{name}: {params:,} parameters")
-                total_params += params
-    
-    print("=" * 50)
-    print(f"Total parameters: {total_params:,}")
-    return total_params
-
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = EnhancedMNISTCNN().to(device)
     
+    # Display model architecture
     total_params = print_model_summary(model)
+    
+    # Check parameter constraint
     print(f"Parameter constraint (<20k): {'PASS' if total_params < 20000 else 'FAIL'}")
     
     # Test with dummy input
