@@ -6,56 +6,58 @@ This repository contains the complete implementation of a highly efficient Convo
 
 This project demonstrates a deep understanding of modern CNN architecture, including strategic use of Batch Normalization, Dropout for regularization, and Global Average Pooling (GAP) for extreme parameter efficiency.
 
-## Final Results: Target Achieved
+## Final Results Analysis
 
-The final model successfully meets or exceeds all assignment criteria by the end of the 20-epoch training cycle.
+The final model successfully meets the parameter and epoch constraints while coming extremely close to the accuracy target. The analysis of the training log provides critical insights into the final steps required to cross the 99.4% threshold.
 
-| Metric                | Constraint | Final Result               | Status  |
-| :-------------------- | :--------- | :------------------------- | :------ |
-| **Validation Accuracy** | **> 99.4%**  | **99.45%** (Best at Epoch 17) | SUCCESS |
-| **Model Parameters**    | **< 20,000** | **19,664**                 | SUCCESS |
-| **Training Time**       | **< 20 Epochs**| **20 Epochs** (Full Run)   | SUCCESS |
+| Metric | Constraint | Final Result | Status |
+| :--- | :--- | :--- | :--- |
+| **Validation Accuracy** | **> 99.4%** | **99.29%** (Best at Epochs 13 & 17) | **Near Success** |
+| **Model Parameters** | **< 20,000** | **19,664** | **SUCCESS** |
+| **Training Time** | **< 20 Epochs**| **20 Epochs** (Full Run) | **SUCCESS** |
 
 ---
 
 ## Full 20-Epoch Training Log Analysis
 
-While the `training_logs.json` file provides the raw data, this section presents the complete, formatted logs from the final 20-epoch run and offers a detailed analysis of the model's learning journey.
+This section presents the complete, formatted logs from the final 20-epoch run, based on the `training_logs.json` file, followed by a detailed analysis of the model's learning journey.
 
 ### Final Training Log
 
-| Epoch | Train Loss | Train Acc (%) | Val Loss | Val Acc (%) | Learning Rate | Notes                                     |
-| :---- | :--------- | :------------ | :------- | :---------- | :------------ | :---------------------------------------- |
-| 1     | 0.5398     | 89.75         | 0.1135   | 97.82       | 0.002000      | Strong initial learning phase             |
-| 2     | 0.0915     | 97.91         | 0.0668   | 98.39       | 0.002000      | Convergence accelerates rapidly           |
-| 3     | 0.0621     | 98.35         | 0.0581   | 98.31       | 0.002000      | -                                         |
-| 4     | 0.0490     | 98.65         | 0.0449   | 98.71       | 0.002000      | Performance steadily improving            |
-| 5     | 0.0418     | 98.88         | 0.0425   | 98.79       | 0.002000      | Nearing the initial performance plateau   |
-| 6     | 0.0381     | 98.90         | 0.0411   | 98.75       | 0.002000      | -                                         |
-| 7     | 0.0345     | 99.03         | 0.0450   | 98.59       | 0.002000      | Last epoch before first LR drop           |
-| **8** | **0.0231** | **99.38**     | **0.0250** | **99.25** | **0.000200**  | **LR Drop: Fine-tuning phase begins**     |
-| 9     | 0.0205     | 99.45         | 0.0244   | 99.29       | 0.000200      | Significant jump in validation accuracy   |
-| 10    | 0.0195     | 99.48         | 0.0241   | 99.31       | 0.000200      | -                                         |
-| 11    | 0.0188     | 99.50         | 0.0238   | 99.25       | 0.000200      | -                                         |
-| 12    | 0.0182     | 99.53         | 0.0235   | 99.33       | 0.000200      | -                                         |
-| 13    | 0.0175     | 99.55         | 0.0229   | **99.41**   | 0.000200      | **Target accuracy of 99.4% is first met** |
-| 14    | 0.0171     | 99.58         | 0.0235   | 99.35       | 0.000200      | Last epoch before second LR drop          |
-| **15**| **0.0160** | **99.61**     | **0.0225** | **99.39** | **0.000020**  | **LR Drop: Final fine-tuning phase**      |
-| 16    | 0.0155     | 99.63         | 0.0221   | 99.42       | 0.000020      | -                                         |
-| 17    | 0.0152     | 99.65         | 0.0218   | **99.45**   | 0.000020      | **New best validation accuracy achieved** |
-| 18    | 0.0150     | 99.64         | 0.0219   | 99.43       | 0.000020      | Model performance is fully stable         |
-| 19    | 0.0148     | 99.66         | 0.0217   | 99.44       | 0.000020      | -                                         |
-| 20    | 0.0147     | 99.67         | 0.0216   | 99.43       | 0.000020      | End of training                           |
+| Epoch | Train Loss | Train Acc (%) | Val Loss | Val Acc (%) | Learning Rate |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | 0.5407 | 89.72 | 0.1141 | 97.80 | 0.002000 |
+| 2 | 0.0923 | 97.89 | 0.0672 | 98.36 | 0.002000 |
+| 3 | 0.0615 | 98.37 | 0.0592 | 98.26 | 0.002000 |
+| 4 | 0.0482 | 98.69 | 0.0452 | 98.67 | 0.002000 |
+| 5 | 0.0423 | 98.84 | 0.0430 | 98.74 | 0.002000 |
+| 6 | 0.0379 | 98.92 | 0.0419 | 98.71 | 0.002000 |
+| 7 | 0.0340 | 99.01 | 0.0459 | 98.52 | 0.000200 |
+| 8 | 0.0228 | 99.40 | 0.0253 | 99.23 | 0.000200 |
+| 9 | 0.0203 | 99.47 | 0.0246 | 99.24 | 0.000200 |
+| 10 | 0.0192 | 99.43 | 0.0245 | 99.28 | 0.000200 |
+| 11 | 0.0189 | 99.49 | 0.0240 | 99.19 | 0.000200 |
+| 12 | 0.0180 | 99.51 | 0.0239 | 99.24 | 0.000200 |
+| **13** | **0.0173** | **99.54** | **0.0231** | **99.29** | **0.000200** |
+| 14 | 0.0173 | 99.54 | 0.0237 | 99.27 | 0.000020 |
+| 15 | 0.0161 | 99.60 | 0.0233 | 99.28 | 0.000020 |
+| 16 | 0.0157 | 99.60 | 0.0232 | 99.24 | 0.000020 |
+| **17** | **0.0153** | **99.59** | **0.0229** | **99.29** | **0.000020** |
+| 18 | 0.0156 | 99.58 | 0.0231 | 99.23 | 0.000020 |
+| 19 | 0.0152 | 99.63 | 0.0230 | 99.25 | 0.000020 |
+| 20 | 0.0151 | 99.63 | 0.0227 | 99.27 | 0.000020 |
 
 ### Log Narrative & Discussion
 
-The training log clearly illustrates the model's journey to high accuracy.
+The training log reveals a classic optimization story with clear evidence of a well-performing model that is on the verge of its goal.
 
-1.  **Initial Convergence (Epochs 1-7):** The model starts with a high learning rate (`0.002`), allowing it to learn the broad features of the dataset quickly. During this phase, the validation accuracy rapidly climbs to over 98.7%, but the rate of improvement begins to slow, indicating that a more delicate approach is needed to find a better solution.
+1.  **Initial Convergence (Epochs 1-6):** The model demonstrates healthy and rapid learning with the initial learning rate of `0.002`. The validation accuracy quickly climbs from a baseline to over 98.7%, showing the architecture is effective.
 
-2.  **Primary Fine-Tuning (Epochs 8-14):** At the end of epoch 7, the `StepLR` scheduler reduces the learning rate by 90% to `0.0002`. This is the most critical phase. The smaller learning rate allows the optimizer to make much finer adjustments to the model's weights. The impact is immediate, with the validation accuracy jumping from the 98.5% range to consistently above 99.2%. The target accuracy of **99.4% is first achieved at epoch 13**.
+2.  **Fine-Tuning Phase 1 (Epochs 7-13):** The `StepLR` scheduler correctly drops the learning rate after epoch 7. This is the most crucial phase of training. The smaller learning rate allows the model to make more precise adjustments, causing the validation accuracy to jump significantly from 98.52% to 99.23%. The model achieves its **peak validation accuracy of 99.29% at epoch 13**.
 
-3.  **Final Refinement (Epochs 15-20):** A final learning rate drop to `0.00002` occurs after epoch 14. This allows the model to settle into the deepest possible minimum it has found. During this phase, the model achieves its peak performance of **99.45% at epoch 17**. The subsequent epochs show extremely stable performance, with minimal fluctuations in loss and accuracy, indicating that the model has fully converged and further training is unlikely to yield significant gains. The final model is saved at its peak performance, successfully exceeding the project's goal.
+3.  **Performance Plateau & Overfitting (Epochs 14-20):** After the final learning rate drop, the model's performance on the validation set plateaus. It hovers around 99.25% and does not improve further. Crucially, during this phase, the **Training Accuracy continues to climb to 99.63%**, while the Validation Accuracy stagnates. This widening gap is a clear, textbook sign of slight **overfitting**. The model is becoming exceptionally good at memorizing the training data but is losing its ability to generalize to the unseen validation data.
+
+This analysis is invaluable: it shows that the model has sufficient capacity but requires slightly stronger regularization to bridge the final gap between memorization and true generalization to achieve the 99.4% target.
 
 ---
 
@@ -89,7 +91,7 @@ Batch Normalization (`nn.BatchNorm2d`) is a non-negotiable component of this mod
 Dropout (`nn.Dropout`) is strategically employed as the primary regularization technique to prevent overfitting and improve the model's generalization capabilities.
 
 -   **Mechanism and Placement:** Dropout layers with a rate of `p=0.1` are placed after the ReLU activation in the deeper convolutional blocks (blocks 2, 3, and 4). During training, these layers randomly set 10% of the incoming activations to zero for each forward pass. This prevents the network from becoming too reliant on specific activation paths.
--   **Strategic Application:** Dropout is deliberately omitted from the first convolutional block. The initial layer is responsible for learning fundamental, low-level features (like edges and corners) that are critical for the rest of the network. Applying dropout here could be detrimental. By applying it only in deeper layers, we regularize the learning of more complex feature combinations, which is where overfitting is most likely to occur.
+-   **Strategic Application:** Dropout is deliberately omitted from the first convolutional block. The initial layer is responsible for learning fundamental, low-level features (like edges and corners) that are critical for the rest of the network. Applying dropout here could be detrimental. By applying it only in deeper layers, we regularize the learning of more complex feature combinations, which is where overfitting is most likely to occur. The final log analysis suggests that this regularization was crucial, and a slightly higher rate could be the key to hitting the final accuracy target.
 
 ### 4. Use of a Fully Connected Layer or GAP
 
