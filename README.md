@@ -12,9 +12,9 @@ The final model successfully meets or exceeds all assignment criteria.
 
 | Metric | Constraint | Final Result | Status |
 | :--- | :--- | :--- | :--- |
-| **Validation Accuracy** | **> 99.4%** | **99.41%** | ✅ **SUCCESS** |
-| **Model Parameters** | **< 20,000** | **19,664** | ✅ **SUCCESS** |
-| **Training Time** | **< 20 Epochs** | **13 Epochs** | ✅ **SUCCESS** |
+| **Validation Accuracy** | **> 99.4%** | **99.41%** | **SUCCESS** |
+| **Model Parameters** | **< 20,000** | **19,664** | **SUCCESS** |
+| **Training Time** | **< 20 Epochs** | **13 Epochs** | **SUCCESS** |
 
 ---
 
@@ -63,7 +63,7 @@ The total number of trainable parameters is a primary constraint. The architectu
 **Result:**
 - **Constraint:** < 20,000
 - **Actual:** 19,664
-- **Status:** ✅ **PASS**
+- **Status:** **PASS**
 
 ### 2. Use of Batch Normalization
 
@@ -114,3 +114,4 @@ The model uses `nn.AdaptiveAvgPool2d(1)` at the end of the feature extraction pi
     ```bash
     python train.py
     ``````
+
